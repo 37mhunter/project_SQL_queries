@@ -1,0 +1,8 @@
+SELECT A.customer_id, A.first_name, A.last_name, C.city, D.country, sum(E.amount) as Total_Amount_Paid
+from payment E
+inner join customer A on E.customer_id = A.customer_id
+inner join address B on A.address_id = B.address_id
+inner join city C on B.city_id = C.city_id
+inner join country D on C.country_id = D.country_id
+group by A.customer_id, C.city, D.country 
+order by total_amount_paid desc
